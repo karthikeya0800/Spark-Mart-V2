@@ -76,6 +76,13 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   }, [pageNumber]);
 
   const navigate = useNavigate();
+  const navigateToProduct = async (name: string) => {
+    const product = await axios.get(
+      `https://spark-mart-backend.vercel.app/api/products/name/${name}`
+    );
+    const idByname = product.data[0]._id;
+    navigate(`product/${idByname}`);
+  };
 
   return (
     <div className="bg-background text-foreground">
@@ -85,8 +92,9 @@ const HomePage: React.FC<HomePageProps> = (props) => {
         className="pt-16 flex justify-center items-center min-h-[40vh] md:min-h-screen"
       >
         <Carousel className="w-full md:w-9/12 mx-auto">
+          {/*67ef6c08cf726f8d25d9c848,67ef6c08cf726f8d25d9c849,67ef6c08cf726f8d25d9c849*/}
           <CarouselContent>
-            {Array.from({ length: 3 }).map((_, index) => (
+            {["Smart Watch", "Home Security Camera", "JBL Wireless Headphones"].map((name, index) => (
               <CarouselItem key={index}>
                 <div>
                   <Card className="border-none bg-card text-card-foreground">
@@ -97,6 +105,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
                         </p>
                         <Link
                           to="/"
+                          onClick={()=>navigateToProduct(name)}
                           className="inline-block uppercase text-sm text-primary-foreground bg-primary font-semibold tracking-wider p-2 md:px-4 md:py-2 mt-5 rounded-sm hover:bg-primary/80 transition"
                         >
                           Shop Product
@@ -140,6 +149,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
           </div>
           <Link
             to="/"
+            onClick={()=>navigateToProduct("Acer Laptop")}
             className="inline-block uppercase text-primary-foreground bg-primary font-semibold tracking-wider px-4 py-2 mt-6 md:mt-10 rounded-sm hover:bg-primary/80 transition"
           >
             Shop Now

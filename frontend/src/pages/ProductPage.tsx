@@ -121,13 +121,13 @@ const ProductPage = () => {
               </div>
               <div className="mt-6 flex flex-col items-center md:items-start">
                 <div className="flex items-center gap-4">
-                  <span className="text-3xl md:text-4xl font-bold text-secondary">
+                  <span className="text-3xl text-nowrap md:text-4xl font-bold text-secondary">
                     ₹ {Math.ceil(product.price - product.price / 10)}.00
                   </span>
-                  <span className="text-lg line-through text-muted-foreground">
+                  <span className="text-lg text-nowrap line-through text-muted-foreground">
                     ₹ {product.price}
                   </span>
-                  <span className="text-sm bg-secondary text-secondary-foreground font-semibold px-3 py-1 rounded-full">
+                  <span className="text-sm text-nowrap bg-secondary text-secondary-foreground font-semibold px-3 py-1 rounded-full">
                     10% OFF
                   </span>
                 </div>
